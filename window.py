@@ -9,8 +9,8 @@ class Window(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         self.title("Convertor")
-        self.geometry("800x600")
-        self.resizable(False, False)
+        self.geometry("770x130")
+        #self.resizable(False, False)
         self.style = ttkbs.Style(theme="flatly")
 
         self.theme_var = tk.StringVar(value="Switch to Dark Theme")
@@ -76,9 +76,10 @@ class PandasTableApp:
         self.top.title(title)
 
         rows, cols = self.df.shape
-        width = max(300, cols * 100)
+        width_per_column = 150  # Fixed width for each column in pixels
+        total_width = cols * width_per_column  # Total width based on the number of columns
         height = max(200, rows * 30)
-        self.top.geometry(f"{width}x{height}")
+        self.top.geometry(f"{total_width}x{height}")  # Set the window size
 
         self.frame = tk.Frame(self.top)
         self.frame.pack(fill='both', expand=True)
