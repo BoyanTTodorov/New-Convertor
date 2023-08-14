@@ -21,12 +21,15 @@ class Window(tk.Tk):
         self.mainloop()
 
     def toggle_theme(self):
-        if self.style.theme_use() == "flatly":
-            self.style.theme_use("darkly")
-            self.theme_var.set("Switch to Light Theme")
-        else:
-            self.style.theme_use("flatly")
-            self.theme_var.set("Switch to Dark Theme")
+        try:
+            if self.style.theme_use() == "flatly":
+                self.style.theme_use("darkly")
+                self.theme_var.set("Switch to Light Theme")
+            else:
+                self.style.theme_use("flatly")
+                self.theme_var.set("Switch to Dark Theme")
+        except tk.TclError:
+            print("Application has been destroyed, cannot toggle theme.")
 
 class UserInputFrame(ttkbs.Frame):
     def __init__(self, parent) -> None:
